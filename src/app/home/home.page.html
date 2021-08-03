@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngFor="let track of playList">
+    <ion-item>
+      <ion-label>{{track.name}}</ion-label>
+      <ion-icon name="play-circle-outline" (click)="togglePlayer(false,track)" *ngIf="!isPlaying"></ion-icon>
+      <ion-icon name="pause-outline" (click)="togglePlayer(true,track)" *ngIf="isPlaying"></ion-icon>
+
+      <ion-range max="100" name={{track.name}} #range [(ngModel)]="progress" (touchend)="seek(track)"
+        (mouseup)="seek(track)">
+
+      </ion-range>
+    </ion-item>
+  </ion-list>
+</ion-content>
