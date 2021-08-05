@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>musicUploader</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="!isSongUploading && !isSongUploaded">
+    <ion-card-header>
+      <ion-card-title>Select File</ion-card-title>
+    </ion-card-header>
+
+    <ion-button color="danger">
+      <input type="file" class="upload" (change)="fileUpload($event.target.files)" />
+    </ion-button>
+  </ion-card>
+
+  <ion-card *ngIf="isSongUploading && !isSongUploaded">
+    <ion-card-header>
+      <ion-card-title>Files selected: <b>{{ FileName }}</b></ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div *ngIf="progressNum | async as percentage">
+        Progress: {{ percentage | number }}%
+        <ion-progress-bar value="{{ percentage / 100 }}"></ion-progress-bar>
+      </div>
+      <div *ngIf="progressSnapshot | async as pSnapshot">
+        Image size: {{ pSnapshot.totalBytes | fileSize }} Transfered:
+        {{ pSnapshot.bytesTransferred | fileSize }}
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
