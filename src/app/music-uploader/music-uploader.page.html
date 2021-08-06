@@ -8,13 +8,26 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label position="floating">Add Clairo Song</ion-label>
+    <ion-input [(ngModel)] = "audioTitle"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Description</ion-label>
+    <ion-textarea placeholder="Describe clairo's art." [(ngModel)] = "audioDescription"></ion-textarea>
+  </ion-item>
   <ion-card *ngIf="!isSongUploading && !isSongUploaded">
     <ion-card-header>
       <ion-card-title>Select File</ion-card-title>
     </ion-card-header>
 
     <ion-button color="danger">
-      <input type="file" class="upload" (change)="fileUpload($event.target.files)" />
+      <input
+        type="file"
+        class="upload"
+        (change)="fileUpload($event.target.files)"
+      />
     </ion-button>
   </ion-card>
 
@@ -29,8 +42,8 @@
         <ion-progress-bar value="{{ percentage / 100 }}"></ion-progress-bar>
       </div>
       <div *ngIf="progressSnapshot | async as pSnapshot">
-        Image size: {{ pSnapshot.totalBytes | fileSize }} Transfered:
-        {{ pSnapshot.bytesTransferred | fileSize }}
+        Image size: {{ pSnapshot.totalBytes | fileSize }} Transfered: {{
+        pSnapshot.bytesTransferred | fileSize }}
       </div>
     </ion-card-content>
   </ion-card>

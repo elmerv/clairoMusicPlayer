@@ -3,11 +3,16 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 export interface FILE {
+  title: string;
+  discreption: string; 
   name: string;
   filepath: string;
   size: number;
+  isPlaying: boolean;
+  progress: number;
 }
 
 @Component({
@@ -27,7 +32,8 @@ export class MusicUploaderPage implements OnInit {
 
   progressSnapshot: Observable<any>;
 
-
+  audioTitle; 
+  audioDescription; 
   FileName: string;
   FileSize: number;
 
@@ -35,7 +41,7 @@ export class MusicUploaderPage implements OnInit {
   isSongUploaded: boolean;
   private ngFirestoreCollection: AngularFirestoreCollection<FILE>;
 
-  constructor(private angularFirestore: AngularFirestore,private angularFireStorage: AngularFireStorage) {
+  constructor(private angularFirestore: AngularFirestore,private angularFireStorage: AngularFireStorage, private router: Router) {
     this.isSongUploaded = false; 
     this.isSongUploading = false;
     this.ngFirestoreCollection = angularFirestore.collection<FILE>('filesCollection');
@@ -60,20 +66,28 @@ export class MusicUploaderPage implements OnInit {
         
         this.fileUploadedPath.subscribe(resp=>{
           this.fileStorage({
+            title: this.audioTitle, 
+            discreption: this.audioDescription,
             name: file.name,
             filepath: resp,
-            size: this.FileSize
+            size: this.FileSize, 
+            isPlaying: false,
+            progress: 0,
           });
           this.isSongUploading = false;
           this.isSongUploaded = true;
+          this.router.navigateByUrl('/home');
+
         },error => {
           console.log(error);
         })
       }),
       tap(snap => {
           this.FileSize = snap.totalBytes;
+
       })
     )
+
   }
   fileStorage(audio: FILE) {
     const audioId = this.angularFirestore.createId();
