@@ -6,12 +6,6 @@ import { Observable } from 'rxjs';
 
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-// export interface Track {
-//   name: string;
-//   path: string;
-//   isPlaying: boolean;
-//   progress: number;
-// }
 export interface Track {
   title: string;
   description: string; 
@@ -49,6 +43,7 @@ export class HomePage {
     }
     this.player = new Howl({
       src: [track.filepath],
+      html5: true,
       onplay: () => {
         track.isPlaying = true;
         this.activeTrack = track;

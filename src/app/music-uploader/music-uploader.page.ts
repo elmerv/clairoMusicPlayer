@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 
 export interface FILE {
   title: string;
-  discreption: string; 
+  description: string; 
   name: string;
   filepath: string;
   size: number;
@@ -67,7 +67,7 @@ export class MusicUploaderPage implements OnInit {
         this.fileUploadedPath.subscribe(resp=>{
           this.fileStorage({
             title: this.audioTitle, 
-            discreption: this.audioDescription,
+            description: this.audioDescription,
             name: file.name,
             filepath: resp,
             size: this.FileSize, 
