@@ -6,19 +6,34 @@
 
 <ion-content [fullscreen]="true">
   <ion-list *ngFor="let track of files | async">
-      <ion-card>
-        <ion-label></ion-label>
-        <ion-label>{{track.title}}</ion-label>
-        <ion-card-content>{{track.description}}</ion-card-content>
-        <ion-item>
-        <ion-icon name="play-circle-outline" (click)="togglePlayer(false,track)" *ngIf="!track.isPlaying"></ion-icon>
-        <ion-icon name="pause-outline" (click)="togglePlayer(true,track)" *ngIf="track.isPlaying"></ion-icon>
-        <ion-range max="100" name="{{track.name}}" #range [(ngModel)]="track.progress" (touchend)="seek(track)"
-          (mouseup)="seek(track)">
+    <ion-card>
+      <ion-label></ion-label>
+      <ion-card-title>{{track.title}}</ion-card-title>
+
+      <ion-card-content>{{track.description}}</ion-card-content>
+      <ion-item>
+        <ion-icon
+          name="play-circle-outline"
+          (click)="togglePlayer(false,track)"
+          *ngIf="!track.isPlaying"
+        ></ion-icon>
+        <ion-icon
+          name="pause-outline"
+          (click)="togglePlayer(true,track)"
+          *ngIf="track.isPlaying"
+        ></ion-icon>
+        <ion-range
+          id="range"
+          max="100"
+          name="{{track.name}}"
+          #range
+          [(ngModel)]="track.progress"
+          (touchend)="seek(track)"
+          (mouseup)="seek(track)"
+        >
         </ion-range>
       </ion-item>
-
-      </ion-card>
+    </ion-card>
   </ion-list>
 
   <ion-button [routerLink]="['/music-uploader']">

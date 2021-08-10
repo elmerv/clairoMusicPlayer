@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import {Router} from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 export interface FILE {
   title: string;
@@ -41,10 +42,10 @@ export class MusicUploaderPage implements OnInit {
   isSongUploaded: boolean;
   private ngFirestoreCollection: AngularFirestoreCollection<FILE>;
 
-  constructor(private angularFirestore: AngularFirestore,private angularFireStorage: AngularFireStorage, private router: Router) {
+  constructor(private angularFirestore: AngularFirestore,private angularFireStorage: AngularFireStorage, private router: Router, public toastController: ToastController) {
     this.isSongUploaded = false; 
     this.isSongUploading = false;
-    this.ngFirestoreCollection = angularFirestore.collection<FILE>('filesCollection');
+    this.ngFirestoreCollection = angularFirestore.collection<FILE>('profileCollection');
     this.files = this.ngFirestoreCollection.valueChanges();
   }
 
@@ -76,6 +77,7 @@ export class MusicUploaderPage implements OnInit {
           });
           this.isSongUploading = false;
           this.isSongUploaded = true;
+          this.handleButtonClick();
           this.router.navigateByUrl('/home');
 
         },error => {
@@ -98,6 +100,16 @@ export class MusicUploaderPage implements OnInit {
       console.log(error);
     });
   }  
+
+  async handleButtonClick() {
+    const toast = await this.toastController.create({
+      color: 'dark',
+      duration: 2000,
+      message: 'You audio has been uploaded 😎',
+    });
+
+    await toast.present();
+  }
   ngOnInit() {
   }
 

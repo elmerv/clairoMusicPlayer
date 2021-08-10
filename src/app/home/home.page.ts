@@ -34,7 +34,7 @@ export class HomePage {
   player: Howl = null;
 
   constructor(private angularFirestore: AngularFirestore) {
-    this.ngFirestoreCollection = angularFirestore.collection<Track>('filesCollection');
+    this.ngFirestoreCollection = angularFirestore.collection<Track>('profileCollection');
     this.files = this.ngFirestoreCollection.valueChanges();
   }
   start(track: Track){
@@ -50,7 +50,6 @@ export class HomePage {
         this.updateProgress(track);
       },
       onend: () => {
-
       }
     });
     console.log(track);
