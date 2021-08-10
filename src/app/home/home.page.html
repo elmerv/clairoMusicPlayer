@@ -1,10 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Blank </ion-title>
+    <ion-title> Clairo Music Player </ion-title>
+    <ion-button id = "addMusicButton" slot = "end" [routerLink]="['/music-uploader']">
+      <ion-icon name="musical-notes"></ion-icon>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div id = "artistBanner">
+  </div>
 
   <ion-list *ngFor="let track of files | async">
     <ion-card>
@@ -23,8 +29,5 @@
     </ion-card>
   </ion-list>
 
-  <ion-button [routerLink]="['/music-uploader']">
-    <ion-icon name="musical-notes"></ion-icon>
-    Upload Music
-  </ion-button>
+
 </ion-content>

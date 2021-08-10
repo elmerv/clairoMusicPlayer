@@ -8,6 +8,16 @@
   transform: translateY(-50%);
 }
 
+#addMusicButton{
+    --background: rgb(240, 150, 165);
+}
+#artistBanner{
+  background: url("https://1.bp.blogspot.com/-b9XRbYWGGfg/WqhNYPHKArI/AAAAAAAARJA/KOtpTUgYqhAdRB3usV58NznGk8xRGsZPgCLcBGAs/s1600/clairo.jpg");
+  width: 100%;
+  height: 35%;
+  border-radius: 5%;
+  background-size: 100% 100%;
+}
 #container strong {
   font-size: 20px;
   line-height: 26px;
