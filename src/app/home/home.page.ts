@@ -3,6 +3,7 @@ import { IonRange } from '@ionic/angular';
 import { Howl } from 'howler';
 import { QueryList } from '@angular/core';
 import { Observable } from 'rxjs';
+import { faGuitar } from '@fortawesome/free-solid-svg-icons';
 
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
@@ -24,6 +25,7 @@ export interface Track {
 
 
 export class HomePage {
+  faGuitar = faGuitar;
   files: Observable<Track[]>;
 
   private ngFirestoreCollection: AngularFirestoreCollection<Track>;

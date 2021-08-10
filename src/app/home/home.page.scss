@@ -13,21 +13,17 @@
   line-height: 26px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.playButton{
+  color:rgb(164, 12, 187);
 }
 
 #container a {
   text-decoration: none;
 }
 #range{
-  --bar-height: 50px;
+  --bar-height: 20px;
   --knob-border-radius: 0px;
-  --knob-box-shadow:white;
-  --bar-background: white;
+  --bar-background: rgb(236, 151, 236);
+  --bar-background-active: rgb(164, 12, 187);
+  --knob-background	:rgb(221, 6, 174);
 }

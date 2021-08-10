@@ -5,32 +5,19 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
   <ion-list *ngFor="let track of files | async">
     <ion-card>
-      <ion-label></ion-label>
-      <ion-card-title>{{track.title}}</ion-card-title>
-
+      <ion-item>
+        <fa-icon [icon]="faGuitar" size = "2x"></fa-icon>
+        <ion-card-title>{{track.title}}</ion-card-title>
+      </ion-item>
       <ion-card-content>{{track.description}}</ion-card-content>
       <ion-item>
-        <ion-icon
-          name="play-circle-outline"
-          (click)="togglePlayer(false,track)"
-          *ngIf="!track.isPlaying"
-        ></ion-icon>
-        <ion-icon
-          name="pause-outline"
-          (click)="togglePlayer(true,track)"
-          *ngIf="track.isPlaying"
-        ></ion-icon>
-        <ion-range
-          id="range"
-          max="100"
-          name="{{track.name}}"
-          #range
-          [(ngModel)]="track.progress"
-          (touchend)="seek(track)"
-          (mouseup)="seek(track)"
-        >
+        <ion-icon class = "playButton" name="play-circle-outline" (click)="togglePlayer(false,track)" *ngIf="!track.isPlaying"></ion-icon>
+        <ion-icon class = "pausButton" name="pause-outline" (click)="togglePlayer(true,track)" *ngIf="track.isPlaying"></ion-icon>
+        <ion-range id="range" max="100" name="{{track.name}}" #range [(ngModel)]="track.progress"
+          (touchend)="seek(track)" (mouseup)="seek(track)">
         </ion-range>
       </ion-item>
     </ion-card>
