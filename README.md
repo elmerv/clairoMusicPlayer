@@ -1,4 +1,4 @@
-#### This is a Clairo music player. 
+# This is a Clairo music player. 
 
 This will be a music player that will have a collection of my favorite songs that are new and old from Clairo. 
 
